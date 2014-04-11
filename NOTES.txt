@@ -1,0 +1,132 @@
+"
+parse csv input and insert to database
+snapshot ifs order entries
+
+extract order lists
+compare and highlight differences
+categorize lines as:
+  invoiced
+  only theirs
+  only ours
+  different
+    part
+    issue
+    qty due
+    price
+    due date
+    performance date
+  matching
+"
+
+"
+Data Model
+"
+(def order-line
+  {
+   :order-book-id 1
+   :order-no 1
+   :customer-po 1
+   :line-no 1
+   :rel-no 1
+   :part-no 1001
+   :customer-part 'abc
+   :customer-issue '001
+   :due-date 'date
+   :performance-date 'date
+   :date-offset nil ; 38 for customer 1030, 14 for 1032
+   :qty-due 1
+   :unit-price 5
+   :status 'Released
+   :data nil})
+
+(def order-book
+  {
+   :id 1
+   :created 'date
+   :source :ifs
+   :lines []})
+
+(def comparison
+  {
+   :id
+   :created
+   :created-by
+   :order-book-ids [1 2]
+   :order-books []})
+
+""
+
+(ns obc.comparison)
+
+(defn perform
+  "Compares two order books and returns a map of the similarities/differences.
+
+  (perform {:source 'ifs :lines []} {:source 'sv :lines []})
+  => {
+      :invoiced []
+      :matching []
+      :unique [[] []]
+      :different [{:order-no 1 :line-no 1 :rel-no 1 :sources [{} {}] :diff {}]}"
+  [b1 b2]
+  nil)
+
+(defn record
+  "Records a comparison in the database for ease of later retrieval"
+  [b1 b2]
+  nil)
+
+(defn fetch
+  "Retrieves a saved comparison from the database"
+  [id]
+  nil)
+
+(defn list
+  "Returns a lazy sequence of saved comparisons from newest to oldest"
+  []
+  nil)
+
+""
+
+(ns objc.order-book)
+
+(defn take-snapshot
+  "Creates a new order book from a snapshot of IFS"
+  []
+  nil)
+
+(defn create-from-csv
+  "Creates a new order book from a set of CSV records"
+  [source lines]
+  nil)
+
+(defn exists?
+  "Does an order book with the specified id exist?"
+  [id]
+  false)
+
+(defn fetch
+  "Retrieve the specified order book from the database"
+  [id]
+  nil)
+
+""
+
+(ns obc.order-line)
+
+(defn <=>)
+
+(defn diff
+  "Compares two lines and returns a map of the differences between them
+  consisting of the name of the differing field as the key and a sequence
+  of the values:
+
+  (diff {:qty-due 5 :unit-price 40} {:qty-due 7 :unit-price 40})
+  => {:qty-due [5 7]}"
+  [l1 l2]
+  nil)
+
+(defn fetch-from-book
+  "Returns all the lines from the specified order book"
+  [b]
+  nil)
+
