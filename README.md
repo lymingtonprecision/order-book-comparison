@@ -1,9 +1,11 @@
-<<<<<<< HEAD
-# obc
+# Order Book Comparison
 
-The project uses [Midje](https://github.com/marick/Midje/).
+A Clojure re-write of our tool to compare customer order books provided
+in CSV format against the current order book in IFS.
 
 ## How to run the tests
+
+The project uses [Midje](https://github.com/marick/Midje/).
 
 `lein midje` will run all tests.
 
@@ -12,7 +14,3 @@ The project uses [Midje](https://github.com/marick/Midje/).
 `lein midje :autotest` will run all the tests indefinitely. It sets up a
 watcher on the code files. If they change, only the relevant tests will be
 run again.
-=======
-order-book-comparison
-=====================
->>>>>>> b6571a7057bfeade8788d550639dfbb46dbdebc4
